@@ -32,6 +32,7 @@ import Type.Proxy (Proxy(..))
 --------------------------------------------------------------------------------
 
 -- | Equivalence relation disguised as a canonicalization function.
+class Canonical :: forall k. Type -> k -> Constraint
 class Canonical a e | e -> a where
   canonical :: Proxy e -> a -> a
 
@@ -39,6 +40,7 @@ class Canonical a e | e -> a where
 
 -- | Quotient type with equivalence relation `e`. The runtime representation is
 -- | identical to that of `a`.
+newtype Quotient :: forall k. Type -> k -> Type
 newtype Quotient a e = Quotient a
 
 infixl 9 type Quotient as /
